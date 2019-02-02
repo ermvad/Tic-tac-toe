@@ -52,7 +52,8 @@ def minimax(tmp_board, player):
 			move, score = minimax(tmp_board, human)
 			moves[i][1] = score
 		tmp_board[empty_cells[i]] = 0
-		
+
+	move = 0
 	if(player == human):
 		score = 100
 		for i in range(0,len(empty_cells)):
@@ -68,7 +69,7 @@ def minimax(tmp_board, player):
 	return moves[move][0], moves[move][1]
 		
 def draw_board(tmp_board):
-	os.system('cls')
+	os.system('clear')
 	draw_hint()
 	print('-----')
 	for i in range(0, field):
@@ -90,15 +91,16 @@ def draw_hint():
 	print('6','7','8')
 	
 def main():
-	os.system('cls')
+	os.system('clear')
 	draw_hint()
 	board = clean_board
 	menu = 1
+	who_moves = 1
 	while menu:
 		print('select 1st player:')
 		print('1 - human, 0 - computer')
 		try:
-			who_moves = int(input())
+			who_moves: int = int(input())
 			if(str(who_moves).isdigit()):
 				menu = 0
 		except ValueError:
@@ -108,7 +110,7 @@ def main():
 		if(who_moves == 1):
 			print('your move:')
 			try:
-				movement = int(input())
+				movement: int = int(input())
 				if(str(board[movement]).isdigit()):
 					board[movement] = human
 					who_moves = 0
@@ -132,4 +134,4 @@ def main():
 		print('draw')
 		
 if __name__ == "__main__":
-    main()
+	main()
