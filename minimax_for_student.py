@@ -53,16 +53,16 @@ def free_moves(tmp_board):
 def minimax(tmp_board, player):
 	empty_cells = []
 	empty_cells = free_moves(tmp_board)
-	
+
 	if(win(tmp_board, human)):
 		return 0,-10
 	elif(win(tmp_board, computer)):
 		return 0,10
 	elif not empty_cells:
 		return 0,0
-		
+
 	moves = [[0]*2 for n in range(0,len(empty_cells))]
-	
+
 	for i in range(0,len(empty_cells)):
 		moves[i][0] = empty_cells[i]
 		tmp_board[empty_cells[i]] = player
@@ -88,10 +88,9 @@ def minimax(tmp_board, player):
 				score = moves[i][1]
 				move = i
 	return moves[move][0], moves[move][1]
-	
+
 def main():
 	board = clean_board
-	menu = 1
 	who_moves = 1
 	while(not(win(board,human)) and not(win(board,computer)) and free_moves(board)):
 		print(board)
@@ -116,6 +115,6 @@ def main():
 		print('computer wins')
 	else:
 		print('draw')
-		
+
 if __name__ == "__main__":
 	main()
