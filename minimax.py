@@ -34,11 +34,11 @@ def minimax(tmp_board, player):
 	empty_cells = free_moves(tmp_board)
 	
 	if(win(tmp_board, human)):
-		return 0,-10
+		return -1,-10
 	elif(win(tmp_board, computer)):
-		return 0,10
+		return -1,10
 	elif not empty_cells:
-		return 0,0
+		return -1,0
 		
 	moves = [[0]*2 for n in range(0,len(empty_cells))]
 	
