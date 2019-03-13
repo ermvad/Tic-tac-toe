@@ -55,14 +55,14 @@ def free_moves(tmp_board):
 		>[0, 5, 7]
 	Здача:
 		1. Реализуйте следующее:
-		1.1 Условие оператора if
-		1.2 Добавление в список free_moves_arr индекса пустой клетки
+			1.1 Условие оператора if
+			1.2 Добавление в список free_moves_arr индекса пустой клетки
 		2. Проверьте функцию с помощью тестов
 	"""
 	free_moves_arr = []
 	for i in range(0, field*field):
-		if("""клетка пуста"""):
-			"""добавить индекс пустой клетки в список free_moves_arr"""
+		if("""1.1 Условие оператора if - данная клетка пуста"""):
+			"""1.2 Добавить индекс пустой клетки в список free_moves_arr"""
 	return free_moves_arr
 
 def minimax(tmp_board, player):
@@ -74,7 +74,7 @@ def minimax(tmp_board, player):
 	После того, как очки для каждой клетки со всех клеток собраны необходимо выбрать наилучший ход:
 		Для человека - ход с наименишим количеством очков - MINI
 		Для компьюетера - ход с наибольшим колическтвом очков - MAX
-	Наилучший ход ищется в списке moves по индексу 1. Если наилучних ходов несколько, выбирается из списка
+	Наилучший ход ищется в списке moves по индексу 1. Если наилучних ходов несколько, выбирается первый
 	После того как такой ход найден, функция возвращает данный ход (индекс клетки) и счет для него.
 	Псевдокод:
 		получить_свободные_клетки;
@@ -89,6 +89,13 @@ def minimax(tmp_board, player):
 		player - игрок, для которого проверяется одно терминальное состояние (победа)
 	Выходные параметры:
 		int,int: индекс клетки для наилучшего хода, стоимость хода
+	Задача:
+		1. Реализуйте следущее:
+			1.1 Проверку терминальных состояний
+			1.2 Условие оператора if
+			1.3 Сбор очков и вызов minimax от компьютера
+		2. Исправьте логиечскую ошибку в нахождении клетки с наименьшим счетом для человека
+		3. Допишите после оператора else нахождение клетки с наибольшим счетом для компьютера
 	"""
 	empty_cells = []
 	empty_cells = free_moves(tmp_board)
@@ -96,11 +103,9 @@ def minimax(tmp_board, player):
 	if(win(tmp_board, human)):
 		return -1,-10
 
-	#
-	#
-	#
-	#
-	#
+	"""
+	1.1 Проверка на достижение второго терминального состояния
+	"""
 
 	elif not empty_cells:
 		return -1,0
@@ -110,27 +115,29 @@ def minimax(tmp_board, player):
 	for i in range(0,len(empty_cells)):
 		moves[i][0] = empty_cells[i]
 		tmp_board[empty_cells[i]] = player
-		#
-		#
-		#
+		if("""1.2 Условие оператора if - текущий игрок - человек""")
+			"""
+			1.3 Сбор очков и вызов minimax от компьютера
+			"""
 		elif(player == computer):
 			move, score = minimax(tmp_board, human)
 			moves[i][1] = score
 		tmp_board[empty_cells[i]] = 0
 
 	move = 0
+	"""
+	2 Исправьте логиечскую ошибку в нахождении индекса клетки с наименьшим счетом для человека 
+	"""
 	if(player == human):
 		score = 100
 		for i in range(0,len(empty_cells)):
-			if(moves[i][1] < score):
+			if(moves[i][1] > score):
 				score = moves[i][1]
 				move = i
 	else:
-		#
-		#
-		#
-		#
-		#
+		"""
+		3. Допишите после оператора else нахождение клетки с наибольшим счетом для компьютера
+		"""
 	return moves[move][0], moves[move][1]
 
 def main():
@@ -141,11 +148,8 @@ def main():
 		if(who_moves == 1):
 			print('your move:')
 			movement = int(input())
-			if(str(board[movement]).isdigit()):
-				board[movement] = human
-				who_moves = 0
-			else:
-				print('incorrect move')
+			board[movement] = human
+			who_moves = 0
 		else:
 			print('computer moves:')
 			minimax_board = board
