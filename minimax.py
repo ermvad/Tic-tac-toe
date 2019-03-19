@@ -4,8 +4,8 @@
 import os
 import time
 field = 3
-human = 'H'
-computer = 'C'
+human = 'X'
+computer = 'O'
 clean_board = [0,0,0,0,0,0,0,0,0]
 minimax_board = []
 
@@ -96,6 +96,8 @@ def main():
 	board = clean_board
 	menu = 1
 	who_moves = 1
+	computer = 'O'
+	human = 'X'
 	while menu:
 		print('select 1st player:')
 		print('1 - human, 0 - computer')
@@ -105,6 +107,9 @@ def main():
 				menu = 0
 		except ValueError:
 			print('incorrect value')
+	if (who_moves == 0):
+		computer = 'X'
+		human = 'O'
 	while(not(win(board,human)) and not(win(board,computer)) and free_moves(board)):
 		draw_board(board)
 		if(who_moves == 1):
