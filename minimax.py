@@ -1,12 +1,9 @@
-#0 1 2
-#3 4 5
-#6 7 8
 import os
 import time
 field = 3
 human = 'X'
 computer = 'O'
-clean_board = [0,0,0,0,0,0,0,0,0]
+clean_board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 minimax_board = []
 
 def win(tmp_board, player):
@@ -42,30 +39,30 @@ def minimax(tmp_board, player):
 		
 	moves = [[0]*2 for n in range(0,len(empty_cells))]
 	
-	for i in range(0,len(empty_cells)):
-		moves[i][0] = empty_cells[i]
-		tmp_board[empty_cells[i]] = player
+	for j in range(0,len(empty_cells)):
+		moves[j][0] = empty_cells[j]
+		tmp_board[empty_cells[j]] = player
 		if(player == human):
 			move, score = minimax(tmp_board, computer)
-			moves[i][1] = score
+			moves[j][1] = score
 		elif(player == computer):
 			move, score = minimax(tmp_board, human)
-			moves[i][1] = score
-		tmp_board[empty_cells[i]] = 0
+			moves[j][1] = score
+		tmp_board[empty_cells[j]] = 0
 
 	move = 0
 	if(player == human):
 		score = 100
-		for i in range(0,len(empty_cells)):
-			if(moves[i][1] < score):
-				score = moves[i][1]
-				move = i
+		for j in range(0,len(empty_cells)):
+			if(moves[j][1] < score):
+				score = moves[j][1]
+				move = j
 	else:
 		score = -100
-		for i in range(0,len(empty_cells)):
-			if(moves[i][1] > score):
-				score = moves[i][1]
-				move = i
+		for j in range(0,len(empty_cells)):
+			if(moves[j][1] > score):
+				score = moves[j][1]
+				move = j
 	return moves[move][0], moves[move][1]
 		
 def draw_board(tmp_board):
